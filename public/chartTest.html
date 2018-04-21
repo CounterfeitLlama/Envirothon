@@ -20,7 +20,6 @@
             messagingSenderId: "202201538676"
         };
         firebase.initializeApp(config);
-
         // Initialize Cloud Firestore through Firebase
         var db = firebase.firestore();
     </script>
@@ -52,10 +51,8 @@
 <script>
     function initGraph() {
         var dataList = []
-
         var user = firebase.auth().currentUser;
         var uid = user.uid;
-
         db.collection("users").doc(uid).collection("day0").get().then(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) {
                     console.log(doc.id, " => ", doc.get("total"));
@@ -80,14 +77,12 @@
                 createGraph(dataList);
             })
     }
-
 </script>
 <script>
      function createGraph(dataList) {
         console.log(dataList);
         // console.log(dataList[0])
         var ctx = document.getElementById("myChart");
-
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {

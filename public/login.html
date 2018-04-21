@@ -38,6 +38,7 @@
         <button type="submit" class="btn btn-default" onclick="auth()">Submit</button>
     </form>
     <button action="forgotpassword.html">Forgot Password?</button>
+    <a href ="signup.html">Sign Up</a>
 </body>
 <script type="text/javascript">
     function auth() {
@@ -51,6 +52,7 @@
             console.log(error.message)
             // ...
         });
+        window.location.href = "index.html"
     };
 </script>
 
@@ -64,6 +66,7 @@
             var isAnonymous = user.isAnonymous;
             var uid = user.uid;
             var providerData = user.providerData;
+            window.location.href = "index.html"
 
             // console.log(db.collection("users").doc(user.uid).data())
             var docRef = db.collection("users").doc(user.uid);
