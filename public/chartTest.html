@@ -62,22 +62,22 @@
         var dataList = []
         var user = firebase.auth().currentUser;
         var uid = user.uid;
-        db.collection("users").doc(uid).collection(dateToStr(day2)).get().then(function(querySnapshot) {
+        db.collection("users").doc(uid).collection(dateToStr(day5)).get().then(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) {
                     console.log(doc.id, " => ", doc.get("total"));
                     dataList.push(doc.get("total"));
                 });
-            }).then(db.collection("users").doc(uid).collection(dateToStr(day3)).get().then(function(querySnapshot) {
+            }).then(db.collection("users").doc(uid).collection(dateToStr(day4)).get().then(function(querySnapshot) {
                     querySnapshot.forEach(function(doc) {
                         console.log(doc.id, " => ", doc.get("total"));
                         dataList.push(doc.get("total"));
                     });
-            })).then(db.collection("users").doc(uid).collection(dateToStr(day4)).get().then(function(querySnapshot) {
+            })).then(db.collection("users").doc(uid).collection(dateToStr(day3)).get().then(function(querySnapshot) {
                     querySnapshot.forEach(function(doc) {
                         console.log(doc.id, " => ", doc.get("total"));
                         dataList.push(doc.get("total"));
                     });
-            })).then(db.collection("users").doc(uid).collection(dateToStr(day5)).get().then(function(querySnapshot) {
+            })).then(db.collection("users").doc(uid).collection(dateToStr(day2)).get().then(function(querySnapshot) {
                     querySnapshot.forEach(function(doc) {
                         console.log(doc.id, " => ", doc.get("total"));
                         dataList.push(doc.get("total"));
