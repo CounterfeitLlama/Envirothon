@@ -1,54 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Scrollable Panel</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <style>
-  body {
-      position: relative;
-  }
-  ul.nav-pills {
-      top: 20px;
-      position: fixed;
-  }
-  div.col-8 div {
-      height: 100px;
-  }
-  </style>
+    <title>Scrollable Panel</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            position: relative;
+        }
+
+        ul.nav-pills {
+            top: 20px;
+            position: fixed;
+        }
+
+        div.col-8 div {
+            height: 100px;
+            padding-top: 10px;
+            width: 30%;
+        }
+
+    </style>
 </head>
+
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <div id="section1" class="bg-info">
-        <h2>Section 1</h2>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>
-      <div id="section2" class="bg-info">
-        <h2>Section 2</h2>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>
-      <div id="section3" class="bg-info">
-        <h2>Section 3</h2>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>
-      <div id="section41" class="bg-info">
-        <h2>Section 4-1</h2>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>
-      <div id="section42" class="bg-info">
-        <h2>Section 4-2</h2>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div id="section1" class="bg-info">
+                    <h2>Section 1</h2>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                </div>
+                <div id="section2" class="bg-info">
+                    <h2>Section 2</h2>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                </div>
+                <div id="section3" class="bg-info">
+                    <h2>Section 3</h2>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                </div>
+                <div id="section41" class="bg-info">
+                    <h2>Section 4-1</h2>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                </div>
+                <div id="section42" class="bg-info">
+                    <h2>Section 4-2</h2>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 </body>
+
 </html>
