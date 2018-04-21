@@ -1,17 +1,20 @@
 function initGraph(user) {
-    var day5 = new Date();
-    var day4 = new Date();
-    day4.setDate(day5.getDate() - 1);
-    var day3 = new Date();
-    day3.setDate(day4.getDate() - 1);
-    var day2 = new Date();
-    day2.setDate(day3.getDate() - 1);
-    var day1 = new Date();
-    day1.setDate(day2.getDate() - 1);
-
+		var numdays = 5;
+		var dates = [];
     var dataList = []
+		for(var i=0;i<5;i++) {
+			day = new Date();
+			day.setDate(day.getDate() - i);
+			dates.push(dateToStr(day));
+		}
+
     // var user = firebase.auth().currentUser;
     var uid = user.uid;
+
+		getDataDateRange(uid,dates,'total',dataList,function() {
+			createGraph(dataList);
+		});
+		/*
     db.collection("users").doc(uid).collection(dateToStr(day5)).get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 console.log(doc.id, " => ", doc.get("total"));
@@ -35,6 +38,7 @@ function initGraph(user) {
         })).then(function() {
             createGraph(dataList);
         })
+				*/
 }
 
 function createGraph(dataList) {
