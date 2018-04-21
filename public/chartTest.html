@@ -35,7 +35,7 @@
                 var uid = user.uid;
                 var providerData = user.providerData;
                 console.log(uid);
-                createGraph();
+                initGraph();
             } else {
                 window.location.href = "login.html"
             }
@@ -56,32 +56,36 @@
         var user = firebase.auth().currentUser;
         var uid = user.uid;
 
-        var test;
-
-        return db.collection("users").doc(uid).collection("day0").get().then(function(querySnapshot) {
+        db.collection("users").doc(uid).collection("day0").get().then(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) {
                     console.log(doc.id, " => ", doc.get("total"));
-                    if (doc.id === "total") {
-                        // doc.get("total").then(dataList.push(temp));
-                        //dataList.push(doc.get("total"))
-                        // return doc.get("total")
-                        // console.log(dataList)
-                        test = doc.get("total")
-                        resolve(test)
-                    }
+                    dataList.push(doc.get("total"));
                 });
-                // console.log(dataList)
-                // createGraph(dataList)
+            }).then(db.collection("users").doc(uid).collection("day1").get().then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                        console.log(doc.id, " => ", doc.get("total"));
+                        dataList.push(doc.get("total"));
+                    });
+            })).then(db.collection("users").doc(uid).collection("day2").get().then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                        console.log(doc.id, " => ", doc.get("total"));
+                        dataList.push(doc.get("total"));
+                    });
+            })).then(db.collection("users").doc(uid).collection("day3").get().then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                        console.log(doc.id, " => ", doc.get("total"));
+                        dataList.push(doc.get("total"));
+                    });
+            })).then(function() {
+                createGraph(dataList);
             })
-        }
+    }
+
 </script>
 <script>
      function createGraph(dataList) {
-        var retVal = await initGraph();
-        console.log(retVal);
-
-        console.log(dataList)
-        console.log(dataList[0])
+        console.log(dataList);
+        // console.log(dataList[0])
         var ctx = document.getElementById("myChart");
 
         var myChart = new Chart(ctx, {
