@@ -12,16 +12,19 @@
 
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script>
-      // Initialize Firebase
-      var config = {
+        // Initialize Firebase
+        var config = {
         apiKey: "AIzaSyBaiaR31dt4LsEU7U8E17NkGfCpMBkMzIU",
         authDomain: "envirothon-48dfa.firebaseapp.com",
         databaseURL: "https://envirothon-48dfa.firebaseio.com",
         projectId: "envirothon-48dfa",
         storageBucket: "envirothon-48dfa.appspot.com",
         messagingSenderId: "202201538676"
-      };
-      firebase.initializeApp(config);
+        };
+        firebase.initializeApp(config);
+
+        // Initialize Cloud Firestore through Firebase
+        var db = firebase.firestore();
     </script>
 
     <!-- update the version number as needed -->
