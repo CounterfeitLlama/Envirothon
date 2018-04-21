@@ -3,7 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <!-- <title>Welcome to Firebase Hosting</title> -->
+
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDadhQvQJsezb0Jj8LkaA6NPHvZ6b3guuY",
+        authDomain: "fir-demo-project.firebaseapp.com",
+        databaseURL: "https://fir-demo-project.firebaseio.com",
+        projectId: "fir-demo-project",
+        storageBucket: "fir-demo-project.appspot.com",
+        messagingSenderId: "300830567303"
+      };
+      firebase.initializeApp(config);
+    </script>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
