@@ -6,51 +6,122 @@
     <title></title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script src="/__/firebase/4.12.1/firebase-app.js"></script>
+    <script src="/__/firebase/4.12.1/firebase.js"></script>
+    <script src="/__/firebase/4.12.1/firebase-firestore.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBaiaR31dt4LsEU7U8E17NkGfCpMBkMzIU",
+            authDomain: "envirothon-48dfa.firebaseapp.com",
+            databaseURL: "https://envirothon-48dfa.firebaseio.com",
+            projectId: "envirothon-48dfa",
+            storageBucket: "envirothon-48dfa.appspot.com",
+            messagingSenderId: "202201538676"
+        };
+        firebase.initializeApp(config);
+
+        // Initialize Cloud Firestore through Firebase
+        var db = firebase.firestore();
+    </script>
+    <script>
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                var providerData = user.providerData;
+                console.log(uid);
+                createGraph();
+            } else {
+                window.location.href = "login.html"
+            }
+        });
+        </script>
 </head>
 
 <body>
-    <iframe width="710" height="650" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="https://calculator.carbonfootprint.com/calculator.aspx"></iframe>
     <canvas id="myChart" width="400" height="400"></canvas>
 </body>
+
+
+
 <script>
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [{
-                fill: false,
-                label: 'Metric tons of C02',
-                data: [18, 19, 3, 5, 2, 3], //use data input from firebase here, plug in some sort of measurement system
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 5
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
+    function initGraph() {
+        var dataList = []
+
+        var user = firebase.auth().currentUser;
+        var uid = user.uid;
+
+        var test;
+
+        return db.collection("users").doc(uid).collection("day0").get().then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    console.log(doc.id, " => ", doc.get("total"));
+                    if (doc.id === "total") {
+                        // doc.get("total").then(dataList.push(temp));
+                        //dataList.push(doc.get("total"))
+                        // return doc.get("total")
+                        // console.log(dataList)
+                        test = doc.get("total")
+                        resolve(test)
                     }
-                }]
-            }
+                });
+                // console.log(dataList)
+                // createGraph(dataList)
+            })
         }
-    });
+</script>
+<script>
+     function createGraph(dataList) {
+        var retVal = await initGraph();
+        console.log(retVal);
+
+        console.log(dataList)
+        console.log(dataList[0])
+        var ctx = document.getElementById("myChart");
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                datasets: [{
+                    fill: false,
+                    label: 'Metric tons of C02',
+                    data: dataList, //use data input from firebase here, plug in some sort of measurement system
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 5
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
 </script>
 
 </html>
