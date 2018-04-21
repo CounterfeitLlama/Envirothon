@@ -46,6 +46,7 @@
             <input type="date" class="form-control" id="birthdate">
         </div>
         <button class="pure-button pure-button-primary" onclick="auth()">Submit</button>
+        <a href="login.html">Already have an account? Login here!</a>
     </div>
 
     <script type="text/javascript">
@@ -58,22 +59,42 @@
 
             console.log(email);
             console.log(password)
-            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+                db.collection("users").doc(user.uid).set({
+                    first: firstname,
+                    last: lastname,
+                    email: email,
+                    birthdate: birthdate,
+                })
+
+
+            }).catch(function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(error.code);
-                console.log(error.message)
-                return;
+                console.log(error.message);
             });
+            window.location.href = "index.html"
 
-            db.collection("users").add({
-                first: firstname,
-                last: lastname,
-                email: email,
-                birthdate: birthdate,
-            })
         };
     </script>
+
+    <script type="text/javascript">
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                var providerData = user.providerData;
+                console.log(uid)
+                window.location.href = "index.html"
+            }
+        });
+    </script>
+
 </body>
 
 </html>
