@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- import CSS -->
+    </head>
+
+    <body>
+        <!-- build form -->
+        <form>
+            <div id="form-group">
+                <label>Activity:</label>
+                <select name="dropdown" onchange="activity(value)">
+                    <option value="Choose One">Choose One</option>
+                    <option value="Driving">Driving</option>
+                    <option value="Laundry">Laundry</option>
+                </select>
+            </div>
+            <div type="hidden" id="carInput">
+                <div id="miles">
+                    <label name="miles">Miles Driven:</label>
+                    <input type="text"></input>
+                </div>
+                <div id="mpg">
+                    <label name="mpg">Car's MPG:</label>
+                    <input type="text"></input>
+                </div>
+            </div>
+            <div>
+            <button type="button" onclick="calc(mpg)">Calculate</button>
+        </form>
+            
+        <script type="text/javascript">
+            
+
+            function activity(value) {
+                console.log(value);
+                if(value == "Laundry") {
+                    var additional_fields = document.createElement('div');
+                    return document.getElementById('carInput').style.visibility = "hidden";
+                    // additional_fields.innerHTML = "<div><label name=\"miles\">Miles Driven:</label><input type=\"text\"></input></div><div><label name=\"mpg\">Car's MPG:</label><input type=\"text\"></input></div>";
+                } else {
+                    var additional_fields = document.createElement('div');
+                }
+
+                document.getElementById('form-group').appendChild(additional_fields);
+            };
+
+            function calc(mpg) {
+                console.log(mpg)
+                // var total =  8887/mpg;    // total carbon emissions in grams
+                // return alert(total);
+            };
+        </script>
+    </body>
+</html>

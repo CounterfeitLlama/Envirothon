@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="utf-8">
     <title></title>
@@ -9,17 +8,18 @@
 </head>
 
 <body>
-    <canvas id="myChart" width="400" height="200"></canvas>
+
+    <canvas id="myChart" width="400" height="400"></canvas>
 </body>
 <script>
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            labels: ["1990", "1995", "2000", "2005", "2010", "2015"],
             datasets: [{
                 fill: false,
-                label: 'Metric tons of C02',
+                label: 'Global Greenhouse Emissions Since 1990',
                 data: [18, 19, 3, 5, 2, 3], //use data input from firebase here, plug in some sort of measurement system
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -51,4 +51,5 @@
         }
     });
 </script>
+
 </html>
