@@ -7,25 +7,19 @@
         <script src="/__/firebase/4.12.1/firebase.js"></script>
         <script src="/__/firebase/4.12.1/firebase-firestore.js"></script>
 
-    <meta name = "viewport" content = "width = device-width, initial-scale = 1">      
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
     <link rel = "stylesheet"
         href = "https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel = "stylesheet"
         href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <script type = "text/javascript"
-        src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+        src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
     </script>
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script>
         // Initialize Firebase
         var config = {
@@ -71,28 +65,28 @@
                 <div class="col s12 m6 card">
                     <h1 class="card-title center" style="font-family: 'Georgia', serif; font-size: 24pt;">Login</h1>
                     <div class="card-content">
-                        <form>
+                        <div>
                             <div class="form-group">
                                 <label for="email">Email address:</label>
-                                <input type="email" class="form-control" id="email">
+                                <input type="email" class="form-control" id="loginemail">
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" id="password">
+                                <input type="password" class="form-control" id="loginpassword">
                             </div>
-                            <button type="submit" class="btn btn-default" onclick="auth()">Login</button>
+                            <button class="btn btn-default" onclick="login()">Login</button>
                             <button class="waves-effect waves-teal btn-flat" action="forgotpassword.html">Forgot Password?</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
         <!-- sign up card -->
                  <div class="col s12 m6 card">
                    <h1 class="card-title center" style="font-family: 'Georgia', serif; font-size: 24pt;">Sign up</h1>
                     <div class="card-content">
-                        <form>
+                        <div>
                             <div class="form-group">
                                 <label for="email">Email address:</label>
-                                <input type="email" class="form-control" id="email">
+                                <input type="email" class="form-control" id="signupemail">
                             </div>
                             <div class="form-group">
                                 <label for="first">First name:</label>
@@ -104,14 +98,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" id="password">
+                                <input type="password" class="form-control" id="signuppassword">
                             </div>
                             <div class="form-group">
                                 <label for="age">Birthdate:</label>
                                 <input type="date" class="form-control" id="birthdate">
                             </div>
-                            <button class="btn btn-default" onclick="auth()">Submit</button>
-                        </form>
+                            <button class="btn btn-default" onclick="signup()">Submit</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,45 +115,43 @@
 <script type="text/javascript">
 
     function login() {
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
+        var email = document.getElementById("loginemail").value;
+        var password = document.getElementById("loginpassword").value;
         console.log(email)
         console.log(password)
         firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
             window.location.href = "index.html"
         }).catch(function(error) {
-            // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(error.code);
             console.log(error.message)
-            // ...
         });
     };
 
-    function auth() {
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
+    function signup() {
+            var email = document.getElementById("signupemail").value;
+            var password = document.getElementById("signuppassword").value;
             var birthdate = document.getElementById("birthdate").value;
             var firstname = document.getElementById("firstname").value;
             var lastname = document.getElementById("lastname").value;
 
             console.log(email);
             console.log(password)
-            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
+                db.collection("users").add({
+                    first: firstname,
+                    last: lastname,
+                    email: email,
+                    birthdate: birthdate,
+                })
+            }).catch(function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(error.code);
                 console.log(error.message)
                 return;
             });
-
-            db.collection("users").add({
-                first: firstname,
-                last: lastname,
-                email: email,
-                birthdate: birthdate,
-            })
         };
 
 </script>
