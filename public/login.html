@@ -26,7 +26,7 @@
 
 <body>
     <h2>Login</h2>
-    <form>
+    <div>
         <div class="form-group">
             <label for="email">Email address:</label>
             <input type="email" class="form-control" id="email">
@@ -35,8 +35,8 @@
             <label for="pwd">Password:</label>
             <input type="password" class="form-control" id="password">
         </div>
-        <button type="submit" class="btn btn-default" onclick="auth()">Submit</button>
-    </form>
+        <button class="btn btn-default" onclick="auth()">Submit</button>
+    </div>
     <button action="forgotpassword.html">Forgot Password?</button>
     <a href ="signup.html">Sign Up</a>
 </body>
@@ -44,7 +44,11 @@
     function auth() {
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        console.log(email)
+        console.log(password)
+        firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+            window.location.href = "index.html"
+        }).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -52,7 +56,6 @@
             console.log(error.message)
             // ...
         });
-        window.location.href = "index.html"
     };
 </script>
 
