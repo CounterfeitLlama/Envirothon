@@ -9,15 +9,14 @@
 </head>
 
 <body>
-    <iframe width="710" height="650" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="https://calculator.carbonfootprint.com/calculator.aspx"></iframe>
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <canvas id="myChart" width="400" height="200"></canvas>
 </body>
 <script>
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
             datasets: [{
                 fill: false,
                 label: 'Metric tons of C02',
@@ -52,5 +51,4 @@
         }
     });
 </script>
-
 </html>
