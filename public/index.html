@@ -33,10 +33,28 @@
         messagingSenderId: "202201538676"
         };
         firebase.initializeApp(config);
+        var auth = firebase.firebase-auth();
 
         // Initialize Cloud Firestore through Firebase
         var db = firebase.firestore();
     </script>
+    <script>
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                var providerData = user.providerData;
+                console.log(uid);
+                initGraph();
+            } else {
+                window.location.href = "login.html"
+            }
+        });
+        </script>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -74,6 +92,7 @@
               <li><a href="#">Analyze</a></li>
               <li><a href="#">Your Part</a></li>
               <li><a href="login.html">Login</a></li>
+              <li onclick="logout()"><a href="login.html">Logout</a></li>
             </ul>
           </div>
         </nav>
@@ -89,7 +108,7 @@
           <div class="col s12 m6">
             <div class="card">
               <div class="card-content">
-                  <iframe src="chartTest.html" style="width:700px;height:400px"></iframe>
+                  <iframe src="chartTest.html" style="width:600px;height:600px"></iframe>
               </div>
               <div class="card-tabs">
                 <ul class="tabs tabs-fixed-width">
@@ -107,4 +126,16 @@
       </div>
     </div>
   </body>
+
+  <script type="text/javascript">
+    function logout() {
+        firebase.auth().signOut().then(function() {
+          // Sign-out successful.
+          console.log("Signed out " + displayName)
+        }).catch(function(error) {
+          // An error happened.
+          console.log("Error " + error)
+        });
+    }
+  </script>
 </html>
