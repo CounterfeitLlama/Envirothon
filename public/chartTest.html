@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <iframe width="710" height="650" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="https://calculator.carbonfootprint.com/calculator.aspx"></iframe>
     <canvas id="myChart" width="400" height="400"></canvas>
 </body>
 <script>
@@ -18,8 +19,9 @@
         data: {
             labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
             datasets: [{
-                label: '# of Votes',
-                data: [18, 19, 3, 5, 2, 3],
+                fill: false,
+                label: 'Metric tons of C02',
+                data: [18, 19, 3, 5, 2, 3], //use data input from firebase here, plug in some sort of measurement system
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -36,7 +38,7 @@
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)'
                 ],
-                borderWidth: 1
+                borderWidth: 5
             }]
         },
         options: {
