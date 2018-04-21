@@ -1,0 +1,41 @@
+[debug] [2018-04-21T11:03:45.973Z] ----------------------------------------------------------------------
+[debug] [2018-04-21T11:03:45.975Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-04-21T11:03:45.976Z] CLI Version:   3.18.4
+[debug] [2018-04-21T11:03:45.976Z] Platform:      darwin
+[debug] [2018-04-21T11:03:45.976Z] Node Version:  v8.11.1
+[debug] [2018-04-21T11:03:45.976Z] Time:          Sat Apr 21 2018 07:03:45 GMT-0400 (EDT)
+[debug] [2018-04-21T11:03:45.976Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-04-21T11:03:45.986Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-04-21T11:03:45.986Z] > authorizing via signed-in user
+[debug] [2018-04-21T11:03:45.988Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-04-21T11:03:45.988Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/bRb4wC-FtXGllFelVOfYxF4a9O0UJYOvlyQQuInMGoU',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Apr 21 2018 07:03:45 GMT-0400 (EDT)
+[debug] [2018-04-21T11:03:46.151Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-21T11:03:46.161Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/envirothon-48dfa  
+  
+ Sat Apr 21 2018 07:03:46 GMT-0400 (EDT)
+[debug] [2018-04-21T11:03:46.481Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-21T11:03:46.482Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/envirothon-48dfa/tokens  
+  
+ Sat Apr 21 2018 07:03:46 GMT-0400 (EDT)
+[debug] [2018-04-21T11:03:46.818Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-21T11:03:46.819Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/envirothon-48dfa  
+  
+ Sat Apr 21 2018 07:03:46 GMT-0400 (EDT)
+[debug] [2018-04-21T11:03:47.118Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/paigehanssen/Repos/Envirothon'...
+[info] 
+[debug] [2018-04-21T11:03:47.120Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/202201538676/clients/_:getWebAppConfig  
+  
+ Sat Apr 21 2018 07:03:47 GMT-0400 (EDT)
+[debug] [2018-04-21T11:03:47.560Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+

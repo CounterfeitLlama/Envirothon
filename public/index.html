@@ -4,7 +4,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <!-- <title>Welcome to Firebase Hosting</title> -->
+
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+        apiKey: "AIzaSyBaiaR31dt4LsEU7U8E17NkGfCpMBkMzIU",
+        authDomain: "envirothon-48dfa.firebaseapp.com",
+        databaseURL: "https://envirothon-48dfa.firebaseio.com",
+        projectId: "envirothon-48dfa",
+        storageBucket: "envirothon-48dfa.appspot.com",
+        messagingSenderId: "202201538676"
+        };
+        firebase.initializeApp(config);
+
+        // Initialize Cloud Firestore through Firebase
+        var db = firebase.firestore();
+    </script>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -32,6 +54,7 @@
     <!-- menu -->
     <div>
         <nav>
+<<<<<<< HEAD
             <div class="nav-wrapper">
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li>Item 1</li>
@@ -39,11 +62,22 @@
                     <li><a href="track.html">Item 3</a></li>
                 </ul>
             </div>
+=======
+          <div class="nav-wrapper">
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li>Home</li>
+              <li><a href="track.html">Track</a></li>
+              <li>Analyze</li>
+              <li>Do More</li>
+            </ul>
+          </div>
+>>>>>>> 0e63c248d6e595a51e756f831f2ce11d6e19c9ec
         </nav>
     </div>
     <!-- center -->
     <h2>Track My Footprint</h2>
     <!-- grid to hold different graphs - daily and weekly...monthly? -->
+<<<<<<< HEAD
     <div>
         <table>
             <tr>
@@ -52,6 +86,18 @@
                 <td>Weekly</td>
             </tr>
         </table>
+=======
+    <div class="section">
+      <div class="container">
+        <table>
+          <tr>
+            <td>Daily</td>
+            <td>Monthly</td>
+            <td>Weekly</td>
+          </tr>
+        </table>
+      </div>
+>>>>>>> 0e63c248d6e595a51e756f831f2ce11d6e19c9ec
     </div>
 </body>
 
