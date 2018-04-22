@@ -70,7 +70,7 @@ function getUid() {
 
 function calcDriving(day, miles, mpg) {
 	// CO2 emissions per mile * miles = total carbon emissions in grams
-	const total =  (8887/(mpg.value)) * miles.value;
+	const total =  (0.008887/(mpg.value)) * miles.value;
 	// Convert the damn date
 	date = new Date(day.value);
 	day = dateToStr(date);
