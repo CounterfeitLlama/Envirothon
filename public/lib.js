@@ -1,4 +1,3 @@
-
 // Grabs user data for given date (mm-dd-yyyy)
 function getData(uid,date,field,retarray,func) {
 	//console.log(db.collection('users').doc(uid).collection(date).get());

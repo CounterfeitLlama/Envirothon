@@ -48,7 +48,7 @@
                     var isAnonymous = user.isAnonymous;
                     var uid = user.uid;
                     var providerData = user.providerData;
-                    initGraph(user);
+                    getWeekly(uid);
                 }
             });
         </script>
@@ -86,10 +86,11 @@
             </nav>
         </div>
         <h2>Analyze Your Data</h2>
-        <h3>Your total recorded emissions: </h3>
+        <h3>Your total recorded emissions: <span id="totalEmissions"></span> metric tons</h3>
 
-        <h3>Your total recorded emissions for this week: </h3>
-
+        <!-- <body onload="getWeekly()"> -->
+        <h3>Your total recorded emissions for this week: <span id="weeklyEmissions"></span> metric tons</h3>
+        <!-- </body> -->
         <h2>Local Impact</h2>
 
         <h4>In 2012, the state of Maine recorded total greenhouse gas release of 18.3 million metric tons. If everyone in Maine lived like you, the people of Maine would have a total release of ___ metric tons of greenhouse gases.</h4>
@@ -98,3 +99,41 @@
 
     </body>
 </html>
+
+<script>
+    function getWeekly(uid) {
+        var numdays = 7;
+        var dates = [];
+        var dataList = []
+        var total = 0;
+
+    	for(var i=numdays-1;i>=0;i--) {
+    		day = new Date();
+    		day.setDate(day.getDate() - i);
+    		dates.push(dateToStr(day));
+    	}
+
+    	getDataDateRange(uid,dates,'total',dataList,function() {
+            total = dataList.reduce(function(a, b) { return a + b; }, 0);
+            document.getElementById("weeklyEmissions").innerHTML = total;
+    	});
+    }
+
+    function getTotal(uid) {
+        var numdays = 7;
+        var dates = [];
+        var dataList = []
+        var total = 0;
+
+    	for(var i=numdays-1;i>=0;i--) {
+    		day = new Date();
+    		day.setDate(day.getDate() - i);
+    		dates.push(dateToStr(day));
+    	}
+
+    	getDataDateRange(uid,dates,'total',dataList,function() {
+            total = dataList.reduce(function(a, b) { return a + b; }, 0);
+            document.getElementById("totalEmissions").innerHTML = total;
+    	});
+    }
+</script>
