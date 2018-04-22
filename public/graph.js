@@ -30,7 +30,7 @@ function createGraph(dataList, dates, id="myChart") {
            labels: dates,
            datasets: [{
                fill: false,
-               label: 'Metric tons of C02',
+               label: 'Metric Tons of C02',
                data: dataList, //use data input from firebase here, plug in some sort of measurement system
                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
                borderColor: ['rgba(255,99,132,1)'],
