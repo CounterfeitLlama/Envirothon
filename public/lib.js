@@ -17,7 +17,6 @@ function getDataDateRange(uid,dates,field,retarray,endfunc) {
 	var range=dates.length;
 	index=0;
 	function func() {
-		console.log("Index: ", index);
 		if(index<range) {
 			getData(uid,dates[index],field,retarray, function() {
 				index++;
@@ -78,7 +77,7 @@ function calcDriving(day, miles, mpg) {
 
 	uid = getUid();
 	addToTotal(uid,day,total,function(){
-		// Refresh
+		// Refresh page
 		window.location=window.location;
 	});
 };
@@ -97,7 +96,6 @@ function dateToStr(date) {
 	var dateStr = padStr(1 + date.getMonth()) + "-" +
 		padStr(date.getDate()) + "-" +
 		padStr(date.getFullYear());
-	console.log('DATE DATED DATEEAD', dateStr);
 	return dateStr
 }
 

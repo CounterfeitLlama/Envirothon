@@ -10,7 +10,6 @@ function initGraph(uid, numdays) {
 
 	getDataDateRange(uid,dates.reverse(),'total',dataList.reverse(),function() {
 		createGraph(dataList, dates);
-        console.log("Total emissions: " + dataList.reduce(function(a, b) { return a + b; }, 0));
 	});
 }
 
@@ -21,9 +20,6 @@ function createGraph(dataList, dates, id="myChart") {
         dates = dates.slice(dates.length - dataList.length)
     }
     
-    console.log("init graph")
-    console.log(id);
-    // console.log(dataList[0])
     var ctx = document.getElementById(id);
     var myChart = new Chart(ctx, {
         type: 'line',
