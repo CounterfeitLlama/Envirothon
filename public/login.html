@@ -121,8 +121,6 @@
     function login() {
         var email = document.getElementById("loginemail").value;
         var password = document.getElementById("loginpassword").value;
-        console.log(email)
-        console.log(password)
         firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
             window.location.href = "index.html"
         }).catch(function(error) {
@@ -140,8 +138,6 @@
             var firstname = document.getElementById("firstname").value;
             var lastname = document.getElementById("lastname").value;
 
-            console.log(email);
-            console.log(password)
             firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
                 db.collection("users").add({
                     first: firstname,
@@ -172,7 +168,6 @@
             var providerData = user.providerData;
             window.location.href = "index.html"
 
-            // console.log(db.collection("users").doc(user.uid).data())
             var docRef = db.collection("users").doc(user.uid);
 
             docRef.get().then(function(doc) {
