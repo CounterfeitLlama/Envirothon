@@ -10,6 +10,7 @@ function initGraph(uid, numdays) {
 
 	getDataDateRange(uid,dates,'total',dataList,function() {
 		createGraph(dataList, dates);
+        console.log("Total emissions: " + dataList.reduce(function(a, b) { return a + b; }, 0));
 	});
 }
 
