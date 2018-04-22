@@ -33,6 +33,18 @@ function getDataDateRange(uid,dates,field,retarray,endfunc) {
 	func();
 }
 
+// Grabs user data for given dates array
+function getAllData(uid,field,retarray,endfunc) {
+	var date = new Date();
+	function func() {
+		getData(uid,dateToStr(date),field,retarray, function() {
+			date.setDate(date.getDate() - 1);
+			func();
+		}, endfunc);
+	}
+	func();
+}
+
 // function getAllData(uid, field, retarray, endfunc) {
 // 	function func() {
 // 		if

@@ -14,6 +14,8 @@
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
         </script>
 
+        <script src="//cdn.rawgit.com/erosson/swarm-numberformat/v0.4.0/dist/swarm-numberformat.min.js"></script>
+
         <script src="graph.js" type="text/javascript"></script>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -49,6 +51,7 @@
                     var uid = user.uid;
                     var providerData = user.providerData;
                     getWeekly(uid);
+                    getTotal(uid);
                 }
             });
         </script>
@@ -111,7 +114,7 @@
                             <div>
                                 <p>In 2012, the state of Maine recorded total greenhouse gas
                                     release of 18.3 million metric tons. If everyone in Maine lived
-                                    like you, the people of Maine would have a total release of ___
+                                    like you, the people of Maine would have a total release of <span id="yearlyEmissions"></span>
                                     metric tons of greenhouse gases.</p>
                                 <div>
                                     <!-- insert graph! -->
@@ -159,20 +162,15 @@
     }
 
     function getTotal(uid) {
-        var numdays = 7;
-        var dates = [];
-        var dataList = []
+        dataList = []
         var total = 0;
+        var average = 0;
 
-    	for(var i=numdays-1;i>=0;i--) {
-    		day = new Date();
-    		day.setDate(day.getDate() - i);
-    		dates.push(dateToStr(day));
-    	}
-
-    	getDataDateRange(uid,dates,'total',dataList,function() {
+    	getAllData(uid,'total',dataList,function() {
             total = dataList.reduce(function(a, b) { return a + b; }, 0);
+            average = total/dataList.length;
             document.getElementById("totalEmissions").innerHTML = total;
+            document.getElementById("yearlyEmissions").innerHTML = numberformat.format(Math.round(average*365*1336000), {sigfigs: 2});
     	});
     }
 </script>
