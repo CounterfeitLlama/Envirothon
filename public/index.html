@@ -43,6 +43,7 @@
     <script>
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
+                var user = user;
                 var displayName = user.displayName;
                 var email = user.email;
                 var emailVerified = user.emailVerified;
@@ -50,7 +51,7 @@
                 var isAnonymous = user.isAnonymous;
                 var uid = user.uid;
                 var providerData = user.providerData;
-                initGraph(user);
+                initGraph(uid, 7);
             }
         });
     </script>
@@ -104,9 +105,9 @@
               </div>
               <div class="card-tabs">
                 <ul class="tabs tabs-fixed-width">
-                  <li class="tab"><a class="active" href="track.html">Daily Tracker</a></li>
-                  <li class="tab"><a href="#test5">Monthly Tracker</a></li>
-                  <li class="tab"><a href="#test6">Yearly Tracker</a></li>
+                  <li class="tab"><a class="active" href="#" onclick="initGraph(grabUser(), 7)">Daily Tracker</a></li>
+                  <li class="tab"><a href="#" onclick="initGraph(grabUser(), 30)">Monthly Tracker</a></li>
+                  <li class="tab"><a href="#" onclick="initGraph(grabUser(), 365)">Yearly Tracker</a></li>
                 </ul>
               </div>
               <div class="card-action">
@@ -120,6 +121,10 @@
   </body>
 
   <script type="text/javascript">
+    function grabUser() {
+        return firebase.auth().currentUser.uid
+    }
+
     function logout() {
         firebase.auth().signOut().then(function() {
           // Sign-out successful.
