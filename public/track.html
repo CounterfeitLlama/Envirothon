@@ -57,7 +57,8 @@
         </div>
 
         <!-- build form -->
-        <form>
+        <!-- <form> -->
+        <div>
             <!-- <div class="input-field">
                 <label for="activity">Materialize Select: Driving</label> -->
                 <!-- <select id="activity">
@@ -67,22 +68,44 @@
                 </select> -->
             <!-- </div> -->
             <div class="input-field">
-                <label name="miles">Activity Type: Driving</label>
+                <label name="activity">Activity Type: Driving</label>
                 <input type="text" disabled></input>
             </div>
             <div class="input-field">
                 <input type="date" name="day">
             </div>
-            <div id="miles" class="input-field">
-                <label name="miles">Miles Driven:</label>
-                <input id="miles" type="text"></input>
+            <!-- <form> -->
+                <div class="input-field">
+                    <label name="miles">Miles Driven:</label>
+                    <input id="miles" type="text"></input>
+                </div>
+                <div class="input-field">
+                    <label name="mpg">Car's MPG:</label>
+                    <input type="text" id="mpg"></input>
+                </div>
+                <button type="button" onclick="calc(day, miles, mpg)">Calculate</button>
+            <!-- </form> -->
+        </div>
+        <!-- </form> -->
+        <div></div>
+        <div class="input-field">
+            <label name="activity">Activity Type: Laundry</label>
+            <input type="text" disabled></input>
+        </div>
+        <div class="input-field">
+            <input type="date" id="date">
+        </div>
+        <!-- <form> -->
+            <div class="input-field">
+                <label name="temp">Load Temperature:</label>
+                <input id="temp" type="text"></input>
             </div>
             <div class="input-field">
-                <label name="mpg">Car's MPG:</label>
-                <input type="text" id="mpg"></input>
+                <label name="dry">Used dryer?:</label>
+                <input type="text" id="dry"></input>
             </div>
-            <div>
-            <button type="button" onclick="calc(day, miles, mpg)">Calculate</button>
+        <!-- </form> -->
+        <button type="button" onclick="calcLaundry(date, temp, dry)">Calculate</button>
         </form>
             
         <script type="text/javascript">
@@ -101,6 +124,9 @@
 
             //     document.getElementById('form-group').appendChild(additional_fields);
             // };
+            function calcLaundry(day, temp, dry) {
+                console.log(day.value + " ");
+            }
 
             function calc(day, miles, mpg) {
                 const total =  (8887/(mpg.value)) * miles.value;            // CO2 emissions per mile * miles = total carbon emissions in grams
