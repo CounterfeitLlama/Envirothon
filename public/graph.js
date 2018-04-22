@@ -1,5 +1,4 @@
-function initGraph(user) {
-	var numdays = 6;
+function initGraph(uid, numdays) {
 	var dates = [];
     var dataList = []
 
@@ -9,15 +8,17 @@ function initGraph(user) {
 		dates.push(dateToStr(day));
 	}
 
-    // var user = firebase.auth().currentUser;
-    var uid = user.uid;
-
 	getDataDateRange(uid,dates,'total',dataList,function() {
 		createGraph(dataList, dates);
 	});
 }
 
 function createGraph(dataList, dates) {
+    console.log(dates.length);
+    console.log(dataList.length);
+    if (dataList.length < dates.length) {
+        dates = dates.slice(dates.length - dataList.length)
+    }
     console.log("init graph")
     console.log(dataList);
     // console.log(dataList[0])
@@ -32,7 +33,7 @@ function createGraph(dataList, dates) {
                data: dataList, //use data input from firebase here, plug in some sort of measurement system
                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
                borderColor: ['rgba(255,99,132,1)'],
-               borderWidth: 5
+               borderWidth: 3
            }]
         },
         options: {
