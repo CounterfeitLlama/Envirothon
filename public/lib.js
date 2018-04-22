@@ -91,7 +91,11 @@ function chooseForm() {
 	]
 
 	var i = document.getElementById('activity').value;
-	document.getElementById('activity-form').innerHTML = forms[i];
+	if(forms[i]!=null){
+		document.getElementById('activity-form').innerHTML = forms[i];
+	} else {
+		document.getElementById('activity-form').innerHTML = '';
+	}
 }
 
 function dateToStr(date) {
