@@ -45,7 +45,7 @@
         <div>
             <nav>
                 <div class="nav-wrapper green darken-1">
-                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <ul id="nav-mobile" class="left">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="track.html">Track</a></li>
                         <li><a href="#">Analyze</a></li>
@@ -57,49 +57,80 @@
         </div>
 
         <!-- build form -->
-        <form>
-            <div id="form-group">
-                <label>Activity:</label>
-                <select name="dropdown" onchange="activity(value)">
-                    <option value="Choose One">Choose One</option>
-                    <option value="Driving">Driving</option>
-                    <option value="Laundry">Laundry</option>
-                </select>
+        <!-- <form> -->
+        <div>
+            <!-- <div class="input-field">
+                <label for="activity">Materialize Select: Driving</label> -->
+                <!-- <select id="activity">
+                    <option value="" selected>Choose an option</option>
+                    <option value="1">Driving</option>
+                    <option value="2">Laundry</option>
+                </select> -->
+            <!-- </div> -->
+            <div class="input-field">
+                <label name="activity">Activity Type: Driving</label>
+                <input type="text" disabled></input>
             </div>
-            <div type="hidden" id="carInput">
-                <div id="miles">
+            <div class="input-field">
+                <input type="date" name="day">
+            </div>
+            <!-- <form> -->
+                <div class="input-field">
                     <label name="miles">Miles Driven:</label>
-                    <input type="text"></input>
+                    <input id="miles" type="text"></input>
                 </div>
-                <div id="mpg">
+                <div class="input-field">
                     <label name="mpg">Car's MPG:</label>
-                    <input type="text"></input>
+                    <input type="text" id="mpg"></input>
                 </div>
+                <button type="button" onclick="calc(day, miles, mpg)">Calculate</button>
+            <!-- </form> -->
+        </div>
+        <!-- </form> -->
+        <div></div>
+        <div class="input-field">
+            <label name="activity">Activity Type: Laundry</label>
+            <input type="text" disabled></input>
+        </div>
+        <div class="input-field">
+            <input type="date" id="date">
+        </div>
+        <!-- <form> -->
+            <div class="input-field">
+                <label name="temp">Load Temperature:</label>
+                <input id="temp" type="text"></input>
             </div>
-            <div>
-            <button type="button" onclick="calc(mpg)">Calculate</button>
+            <div class="input-field">
+                <label name="dry">Used dryer?:</label>
+                <input type="text" id="dry"></input>
+            </div>
+        <!-- </form> -->
+        <button type="button" onclick="calcLaundry(date, temp, dry)">Calculate</button>
         </form>
             
         <script type="text/javascript">
-            
+            // var elem = document.querySelector('select');
+            // var instance = M.FormSelect.init(elem, options);
 
-            function activity(value) {
-                console.log(value);
-                if(value == "Laundry") {
-                    var additional_fields = document.createElement('div');
-                    return document.getElementById('carInput').style.visibility = "hidden";
-                    // additional_fields.innerHTML = "<div><label name=\"miles\">Miles Driven:</label><input type=\"text\"></input></div><div><label name=\"mpg\">Car's MPG:</label><input type=\"text\"></input></div>";
-                } else {
-                    var additional_fields = document.createElement('div');
-                }
+            // function activity(value) {
+            //     console.log(value);
+            //     if(value == "Laundry") {
+            //         var additional_fields = document.createElement('div');
+            //         return document.getElementById('carInput').style.visibility = "hidden";
+            //         // additional_fields.innerHTML = "<div><label name=\"miles\">Miles Driven:</label><input type=\"text\"></input></div><div><label name=\"mpg\">Car's MPG:</label><input type=\"text\"></input></div>";
+            //     } else {
+            //         var additional_fields = document.createElement('div');
+            //     }
 
-                document.getElementById('form-group').appendChild(additional_fields);
-            };
+            //     document.getElementById('form-group').appendChild(additional_fields);
+            // };
+            function calcLaundry(day, temp, dry) {
+                console.log(day.value + " ");
+            }
 
-            function calc(mpg) {
-                console.log(mpg)
-                // var total =  8887/mpg;    // total carbon emissions in grams
-                // return alert(total);
+            function calc(day, miles, mpg) {
+                const total =  (8887/(mpg.value)) * miles.value;            // CO2 emissions per mile * miles = total carbon emissions in grams
+                return console.log(day.value + " " + total);          // return this calculated number to the database
             };
         </script>
     </body>
