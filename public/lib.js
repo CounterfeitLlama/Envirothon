@@ -1,7 +1,6 @@
 // Grabs user data for given date (mm-dd-yyyy)
 function getData(uid,date,field,retarray,func,endfunc=null) {
 	db.collection('users').doc(uid).collection(date).doc("data").get().then(function(d) {
-		console.log("test");
 		console.log(date);
 		var retval = d.data();
 		if (retval == undefined || retval[field] == undefined) {
