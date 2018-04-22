@@ -108,9 +108,11 @@
                             <h1 class="card-title" style="font-family: 'Georgia', serif; font-size: 24pt;">Your Weekly Total: <span id="weeklyEmissions"></span> metric tons</h1>
                         </div>
                         <br>
-                        <div>
-                            <p class="center">Activity Log:</p>
-                            <p id="activity"></p>
+                        <div class="card-panel center">
+                            <h2 class="title center" style="font-family: 'Georgia', serif; font-size: 24pt;">Activity Log:</h2>
+                            <div class="row">
+                                <div id="activities"></div>
+                            </div> 
                         </div>
                     </div>
                     <!-- Activity Log -->
@@ -168,10 +170,11 @@
             });
     	}).then(function() {
             for (i = 0; i < keyList.length; i++) {
-                retList.push(keyList[i] + ": " + dataList[i] + "<br>")
+                retList.push("<div class=\"card\"><div class=\"card-content\"><div><h3>" + 
+                    keyList[i] + ": " + dataList[i] + "</h3><p id=\"emissions\"></p><p id=\"other\"></p></div></div></div><br>")
             }
 
-            document.getElementById("activity").innerHTML = retList.join("")
+            document.getElementById("activities").innerHTML = retList.join("");
         });
     }
 
