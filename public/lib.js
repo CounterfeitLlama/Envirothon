@@ -1,6 +1,5 @@
 // Grabs user data for given date (mm-dd-yyyy)
 function getData(uid,date,field,retarray,func,endfunc=null) {
-	//console.log(db.collection('users').doc(uid).collection(date).get());
 	db.collection('users').doc(uid).collection(date).doc("data").get().then(function(d) {
 		var retval = d.data();
 		if (retval == undefined || retval[field] == undefined) {
@@ -45,9 +44,64 @@ function getAllData(uid,field,retarray,endfunc) {
 	func();
 }
 
-// function getAllData(uid, field, retarray, endfunc) {
-// 	function func() {
-// 		if
-// 	}
-// 	func();
-// }
+function setTotal(uid,date,value,func=function(){}) {
+	db.collection('users').doc(uid).collection(date).doc('data').set({
+		total: value
+	}).then(func);
+}
+
+function addToTotal(uid,date,value,func=function(){}) {
+	var rets=[];
+	getData(uid,date,'total',rets,function(){
+		var nval = 0;
+		if (rets.length>0) nval=rets[0];
+		setTotal(uid,date,value+nval,function(){
+			func();
+		});
+	});
+}
+
+function calcLaundry(day, temp, dry) { // TODO Complete...
+	console.log(day.value + " ");
+}
+
+function getUid() {
+	return firebase.auth().currentUser.uid;
+}
+
+function calcDriving(day, miles, mpg) {
+	// CO2 emissions per mile * miles = total carbon emissions in grams
+	const total =  (8887/(mpg.value)) * miles.value;
+	// Convert the damn date
+	date = new Date(day.value);
+	day = dateToStr(date);
+
+	uid = getUid();
+	addToTotal(uid,day,total,function(){
+		// Refresh
+		//window.location=window.location;
+	});
+};
+
+function chooseForm() {
+	var forms = [
+		'<div class="input-field"><input type="hidden" name="activiy" value="driving"/><label>Activity Type: Driving</label><input type="text" disabled/></div><div class="input-field"><input type="date" id="date"/></div><div class="input-field"><label name="miles">Miles Driven:</label><input id="miles" type="text"/></div><div class="input-field"><label name="mpg">Car\'s MPG:</label><input type="text" id="mpg"></input><button type="button" onclick="calcDriving(date, miles, mpg)">Calculate</button></div>',
+		'<div class="input-field"><input type="hidden" name="activiy" value="laundry"/><label>Activity Type: Laundry</label><input type="text" disabled/></div><div class="input-field"><input type="date" id="date"/></div><div class="input-field"><label name="temp">Load Temperature:</label><input id="temp" type="text"/></div><div class="input-field"><label name="dry">Used dryer?:</label><input type="text" id="dry"/><button type="button" onclick="calcLaundry(date, temp, dry)">Calculate</button></div>'
+	]
+
+	var i = document.getElementById('activity').value;
+	document.getElementById('activity-form').innerHTML = forms[i];
+}
+
+function dateToStr(date) {
+	var dateStr = padStr(1 + date.getMonth()) + "-" +
+		padStr(date.getDate()) + "-" +
+		padStr(date.getFullYear());
+	console.log('DATE DATED DATEEAD', dateStr);
+	return dateStr
+}
+
+function padStr(i) {
+    return (i < 10) ? "0" + i : "" + i;
+}
+
