@@ -79,7 +79,7 @@ function calcDriving(day, miles, mpg) {
 	uid = getUid();
 	addToTotal(uid,day,total,function(){
 		// Refresh
-		//window.location=window.location;
+		window.location=window.location;
 	});
 };
 
