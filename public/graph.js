@@ -51,13 +51,3 @@ function createGraph(dataList, dates) {
     });
 }
 
-function dateToStr(date) {
-    var dateStr = padStr(1 + date.getMonth()) + "-" +
-                  padStr(date.getDate()) + "-" +
-                  padStr(date.getFullYear());
-    return dateStr
-}
-
-function padStr(i) {
-    return (i < 10) ? "0" + i : "" + i;
-}

@@ -22,6 +22,9 @@
         
             <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
             <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+						<script src="/__/firebase/4.12.1/firebase-app.js"></script>
+						<script src="/__/firebase/4.12.1/firebase.js"></script>
+						<script src="/__/firebase/4.12.1/firebase-firestore.js"></script>
             <script>
                 // Initialize Firebase
                 var config = {
@@ -33,7 +36,12 @@
                     messagingSenderId: "202201538676"
                 };
                 firebase.initializeApp(config);
+
+								// Initialize Cloud Firestore through Firebase
+								var db = firebase.firestore();
+								console.log('LOOOOL', db);
             </script>
+						<script src="lib.js"></script>
             <title>Track my Footprint</title>
         
             <!--Let browser know website is optimized for mobile-->
@@ -57,81 +65,18 @@
         </div>
 
         <!-- build form -->
-        <!-- <form> -->
-        <div>
-            <!-- <div class="input-field">
-                <label for="activity">Materialize Select: Driving</label> -->
-                <!-- <select id="activity">
-                    <option value="" selected>Choose an option</option>
-                    <option value="1">Driving</option>
-                    <option value="2">Laundry</option>
-                </select> -->
-            <!-- </div> -->
-            <div class="input-field">
-                <label name="activity">Activity Type: Driving</label>
-                <input type="text" disabled></input>
-            </div>
-            <div class="input-field">
-                <input type="date" name="day">
-            </div>
-            <!-- <form> -->
-                <div class="input-field">
-                    <label name="miles">Miles Driven:</label>
-                    <input id="miles" type="text"></input>
-                </div>
-                <div class="input-field">
-                    <label name="mpg">Car's MPG:</label>
-                    <input type="text" id="mpg"></input>
-                </div>
-                <button type="button" onclick="calc(day, miles, mpg)">Calculate</button>
-            <!-- </form> -->
-        </div>
-        <!-- </form> -->
-        <div></div>
-        <div class="input-field">
-            <label name="activity">Activity Type: Laundry</label>
-            <input type="text" disabled></input>
-        </div>
-        <div class="input-field">
-            <input type="date" id="date">
-        </div>
-        <!-- <form> -->
-            <div class="input-field">
-                <label name="temp">Load Temperature:</label>
-                <input id="temp" type="text"></input>
-            </div>
-            <div class="input-field">
-                <label name="dry">Used dryer?:</label>
-                <input type="text" id="dry"></input>
-            </div>
-        <!-- </form> -->
-        <button type="button" onclick="calcLaundry(date, temp, dry)">Calculate</button>
-        </form>
-            
-        <script type="text/javascript">
-            // var elem = document.querySelector('select');
-            // var instance = M.FormSelect.init(elem, options);
-
-            // function activity(value) {
-            //     console.log(value);
-            //     if(value == "Laundry") {
-            //         var additional_fields = document.createElement('div');
-            //         return document.getElementById('carInput').style.visibility = "hidden";
-            //         // additional_fields.innerHTML = "<div><label name=\"miles\">Miles Driven:</label><input type=\"text\"></input></div><div><label name=\"mpg\">Car's MPG:</label><input type=\"text\"></input></div>";
-            //     } else {
-            //         var additional_fields = document.createElement('div');
-            //     }
-
-            //     document.getElementById('form-group').appendChild(additional_fields);
-            // };
-            function calcLaundry(day, temp, dry) {
-                console.log(day.value + " ");
-            }
-
-            function calc(day, miles, mpg) {
-                const total =  (8887/(mpg.value)) * miles.value;            // CO2 emissions per mile * miles = total carbon emissions in grams
-                return console.log(day.value + " " + total);          // return this calculated number to the database
-            };
-        </script>
+				<div>
+					<form id="input-form" action="#">
+							<div class="input-field">
+									<select id="activity" onchange="if(this.selectedIndex) chooseForm()" style="display:inline;">
+											<option value="" selected="selected">Choose an option</option>
+											<option value="0">Driving</option>
+											<option value="1">Laundry</option>
+									</select>
+							</div>
+							<div id="activity-form"></div>
+							<script>chooseForm();</script>
+					</form>
+				</div>
     </body>
 </html>
