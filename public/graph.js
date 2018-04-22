@@ -1,4 +1,5 @@
 function initGraph(uid, numdays) {
+	console.log("Init graph");
 	var dates = [];
     var dataList = []
 
@@ -14,12 +15,14 @@ function initGraph(uid, numdays) {
 }
 
 function createGraph(dataList, dates, id="myChart") {
+	console.log("Create graph");
+	console.log(dataList)
     dates.reverse();
     dataList.reverse();
     if (dataList.length < dates.length) {
         dates = dates.slice(dates.length - dataList.length)
     }
-    
+
     var ctx = document.getElementById(id);
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -47,4 +50,3 @@ function createGraph(dataList, dates, id="myChart") {
         }
     });
 }
-

@@ -1,6 +1,8 @@
 // Grabs user data for given date (mm-dd-yyyy)
 function getData(uid,date,field,retarray,func,endfunc=null) {
 	db.collection('users').doc(uid).collection(date).doc("data").get().then(function(d) {
+		console.log("test");
+		console.log(date);
 		var retval = d.data();
 		if (retval == undefined || retval[field] == undefined) {
 			endfunc();
@@ -73,6 +75,7 @@ function calcDriving(day, miles, mpg) {
 	const total =  (0.008887/(mpg.value)) * miles.value;
 	// Convert the damn date
 	date = new Date(day.value);
+	date.setDate(date.getDate()+1);
 	day = dateToStr(date);
 
 	uid = getUid();
@@ -94,7 +97,7 @@ function chooseForm() {
 
 function dateToStr(date) {
 	var dateStr = padStr(1 + date.getMonth()) + "-" +
-		padStr(date.getDate()+1) + "-" +
+		padStr(date.getDate()) + "-" +
 		padStr(date.getFullYear());
 	return dateStr
 }
@@ -102,4 +105,3 @@ function dateToStr(date) {
 function padStr(i) {
     return (i < 10) ? "0" + i : "" + i;
 }
-
