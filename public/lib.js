@@ -1,13 +1,15 @@
 // Grabs user data for given date (mm-dd-yyyy)
-function getData(uid,date,field,retarray,func) {
+function getData(uid,date,field,retarray,func,endfunc=null) {
 	//console.log(db.collection('users').doc(uid).collection(date).get());
-	db.collection('users').doc(uid).collection(date).get().then(function(d){
-		console.log(d);
-		d.forEach(function(doc) {
-			console.log(doc.id, "=>", doc.get(field));
-			retarray.push(doc.get(field));
-		});
-		func();
+	db.collection('users').doc(uid).collection(date).doc("data").get().then(function(d){
+		var retval = d.data();
+		if (retval == undefined || retval[field] == undefined) {
+			endfunc();
+		}
+		else {
+			retarray.push(retval[field]);
+			func();
+		}
 	});
 }
 
@@ -25,8 +27,15 @@ function getDataDateRange(uid,dates,field,retarray,endfunc) {
 				} else {
 					func();
 				}
-			});
+			}, endfunc);
 		}
 	}
 	func();
 }
+
+// function getAllData(uid, field, retarray, endfunc) {
+// 	function func() {
+// 		if
+// 	}
+// 	func();
+// }
