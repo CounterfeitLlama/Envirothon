@@ -132,6 +132,9 @@
                 <a href="analyze.html">Read More</a>
               </div>
             </div>
+            <div>
+                <b>Did you know: </b><span id="funfact"></span>
+            </div>
             <footer class="page-footer green darken-1">
                   <div class="footer-copyright">
                     <p style="text-align:center">Created By: Paige Hanssen, Charles Parham, Andrew Turley, and Cole Turner</p>
@@ -147,6 +150,21 @@
   </body>
 
   <script type="text/javascript">
+    window.onload = function() {
+        var strs = ["The dryer is the third-highest energy using appliance, after the refrigerator and washer.",
+                    "The average U.S. household carbon footprint is estimated to be 49 metric tons of CO2.",
+                    "The production of the food we eat accounts for 83% of CO2 emissions, while its transportation accounts for 11%.",
+                    "Replacing all beef consumption with chicken for one year leads to an annual carbon footprint reduction of 882 pounds of CO2.",
+                    "Air-drying clothes can reduce the average household’s carbon footprint by 2,400 pounds a year.",
+                    "Organic food typically requires 30-50% less energy during production.",
+                    "Eating a vegetarian meal one day per week could save the equivalent of driving 1,160 miles.",
+                    "Using a low-flow shower head can save 350 pounds of CO2e per year.",
+                    "Recycling half a household’s waste can save 2,400 pounds of CO2 per year.",
+                    "A gas oven only uses 6% of its energy to cook, while an electric oven only uses 12%."]
+        var randomValue = strs[Math.floor(strs.length * Math.random())];
+        document.getElementById("funfact").innerHTML = randomValue;
+    }
+
     function grabUser() {
         return firebase.auth().currentUser.uid
     }
