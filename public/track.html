@@ -70,6 +70,9 @@
                 <label name="miles">Activity Type: Driving</label>
                 <input type="text" disabled></input>
             </div>
+            <div class="input-field">
+                <input type="date" name="day">
+            </div>
             <div id="miles" class="input-field">
                 <label name="miles">Miles Driven:</label>
                 <input id="miles" type="text"></input>
@@ -79,7 +82,7 @@
                 <input type="text" id="mpg"></input>
             </div>
             <div>
-            <button type="button" onclick="calc(miles, mpg)">Calculate</button>
+            <button type="button" onclick="calc(day, miles, mpg)">Calculate</button>
         </form>
             
         <script type="text/javascript">
@@ -99,9 +102,9 @@
             //     document.getElementById('form-group').appendChild(additional_fields);
             // };
 
-            function calc(miles, mpg) {
-                const total =  8887/(mpg.value);    // total carbon emissions in grams
-                return console.log(total);          // return this calculated number to the database
+            function calc(day, miles, mpg) {
+                const total =  (8887/(mpg.value)) * miles.value;            // CO2 emissions per mile * miles = total carbon emissions in grams
+                return console.log(day.value + " " + total);          // return this calculated number to the database
             };
         </script>
     </body>
