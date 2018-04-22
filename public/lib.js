@@ -94,7 +94,7 @@ function chooseForm() {
 
 function dateToStr(date) {
 	var dateStr = padStr(1 + date.getMonth()) + "-" +
-		padStr(date.getDate()) + "-" +
+		padStr(date.getDate()+1) + "-" +
 		padStr(date.getFullYear());
 	return dateStr
 }
