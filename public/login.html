@@ -80,7 +80,7 @@
                                 <input type="password" class="form-control" id="loginpassword">
                             </div>
                             <button class="btn btn-default" onclick="login()">Login</button>
-                            <button class="waves-effect waves-teal btn-flat" action="forgotpassword.html">Forgot Password?</button>
+                            <button class="waves-effect waves-teal btn-flat" onclick="move()">Forgot Password?</button>
                         </div>
                     </div>
                 </div>
@@ -189,6 +189,11 @@
             });
         }
     });
+</script>
+<script>
+    function move() {
+        window.location.href = "forgotpassword.html"
+    }
 </script>
 
 </html>
