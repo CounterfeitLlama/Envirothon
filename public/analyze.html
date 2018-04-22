@@ -184,7 +184,8 @@
 
     	getDataDateRange(uid,dates,'total',dataList,function() {
             total = dataList.reduce(function(a, b) { return a + b; }, 0);
-            document.getElementById("weeklyEmissions").innerHTML = total;
+            console.log(Math.round(total*100)/100);
+            document.getElementById("weeklyEmissions").innerHTML = Math.round(total);
     	});
     }
 
@@ -196,7 +197,8 @@
     	getAllData(uid,'total',dataList,function() {
             total = dataList.reduce(function(a, b) { return a + b; }, 0);
             average = total/dataList.length;
-            document.getElementById("totalEmissions").innerHTML = total;
+            console.log(Math.round(total*100)/100);
+            document.getElementById("totalEmissions").innerHTML = Math.round(total);
             document.getElementById("yearlyEmissions").innerHTML = numberformat.format(Math.round(average*365*1336000), {sigfigs: 2});
     	});
     }
